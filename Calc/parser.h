@@ -5,21 +5,20 @@
 class Parser
 {
 public:
-    Parser()
+    Parser(): countOfBrackets(0)
     {
-        countOfBrackets = 0;
     }
 
-     QString GetExpr(QString expr, bool isExp);
+     QString getExpr(QString expr, bool isExp);
 
 private:
      Lexer myLexer;
      int countOfBrackets;
-     QString EatFactor();
-     QString EatDegree();
-     QString EatTerm();
-     QString EatExpr();
-     QString EatAssign();
+     QString eatFactor();
+     QString eatDegree();
+     QString eatTerm();
+     QString eatExpr();
+     QString eatAssign();
 
 };
 

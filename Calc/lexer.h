@@ -10,60 +10,45 @@ const char negative = '-';
 class Lexer
 {
 public:
-    Lexer()
+    Lexer():  expression(""), curPosition(0), lengthOfExpression(expression.length())
     {
-         expression = "";
-         curPosition = 0;
-         lengthOfExpression = expression.length();
     }
+
 
     enum LexTyper
     {
-        NumberExp,
-        Number,
-        OpenBracket,
-        CloseBracket,
-        Add,
-        Minus,
-        Degree,
-        Divide,
-        Multiply,
-        Eof
-    };
-
-    enum ErrorType
-    {
-        SemicolonIsMissed,
-        ErrorInActionOrNumber,
-        OpenBracketIsMissed,
-        CloseBracketIsMissed,
-        ErrorInVar,
-        ParserError,
-        DivideByZero,
-        LexerError,
-        NullArgument
+        numberExp,
+        number,
+        openBracket,
+        closeBracket,
+        add,
+        minus,
+        degree,
+        divide,
+        multiply,
+        eof
     };
 
     struct Lexem
     {
-        LexTyper LexType;
-        double Value;
-         QString Name;
+        LexTyper lexType;
+        double value;
+        QString name;
     };
 
 public:
-    void Inicialization( QString expr);
-    Lexem LookAhead(bool nextToken);
-    Lexem GetNextToken();
+    void initialization(QString expr);
+    Lexem lookAhead(bool nextToken);
+    Lexem getNextToken();
 
 private:
       QString expression;
       int curPosition;
       int lengthOfExpression;
 
-      void MissDelimeters();
-      bool IsNumber(int copyOfCurPosition);
-      bool IsExpNumber(int copyOfCurPosition);
+      void missDelimeters();
+      bool isNumber(int copyOfCurPosition);
+      bool isExpNumber(int copyOfCurPosition);
 
 };
 

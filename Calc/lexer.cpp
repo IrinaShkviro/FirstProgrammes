@@ -2,26 +2,23 @@
 
 
 
-void Lexer::Inicialization(QString expr)
+void Lexer::initialization(QString expr)
 {
     curPosition = 0;
     expression = expr;
     lengthOfExpression = expression.length();
 }
 
-void Lexer::MissDelimeters()
+void Lexer::missDelimeters()
 {
     const QString delimeters = " \n\t";
-    while (true)
+    while ((curPosition < lengthOfExpression) && (delimeters.contains(expression[curPosition])))
     {
-        if ((curPosition < lengthOfExpression) && (delimeters.contains(expression[curPosition])))
-            curPosition++;
-        else
-            break;
+        curPosition++;
     }
 }
 
-  bool Lexer::IsNumber(int copyOfCurPosition)
+  bool Lexer::isNumber(int copyOfCurPosition)
 {
     if (copyOfCurPosition >= lengthOfExpression)
         return false;
@@ -30,29 +27,24 @@ void Lexer::MissDelimeters()
     return (expression[copyOfCurPosition] == negative && copyOfCurPosition + 1 < lengthOfExpression && expression.at(copyOfCurPosition + 1).isDigit());
 }
 
-bool Lexer::IsExpNumber(int copyOfCurPosition)
+bool Lexer::isExpNumber(int copyOfCurPosition)
 {
     if (copyOfCurPosition >= lengthOfExpression || expression[copyOfCurPosition] != dividorInNumber)
         return false;
-    return IsNumber(copyOfCurPosition + 1);
+    return isNumber(copyOfCurPosition + 1);
 }
 
-Lexer::Lexem Lexer::LookAhead(bool nextToken)
+Lexer::Lexem Lexer::lookAhead(bool nextToken)
 {
   Lexem result;
-  result.Value = 0;
-  result.LexType = Lexer::Eof;
-  result.Name = "";
-  int digit;
-  MissDelimeters();
+  result.value = 0;
+  result.lexType = Lexer::eof;
+  result.name = "";
+  missDelimeters();
   int copyOfCurPosition = curPosition;
 
-  if (curPosition >= lengthOfExpression)
+  if (curPosition < lengthOfExpression)
   {
-  }
-  else
-  {
-      digit = expression.at(copyOfCurPosition).digitValue();
       if (expression.at(copyOfCurPosition).isDigit())
       {
           while (expression.at(copyOfCurPosition).isDigit())
@@ -60,27 +52,24 @@ Lexer::Lexem Lexer::LookAhead(bool nextToken)
               copyOfCurPosition++;
               if (copyOfCurPosition == lengthOfExpression)
                   break;
-              digit = expression.at(copyOfCurPosition).digitValue();
           }
-          result.Name = expression.mid(curPosition, copyOfCurPosition - curPosition);
-          result.LexType = Number;
-          if (IsExpNumber(copyOfCurPosition))
+          result.name = expression.mid(curPosition, copyOfCurPosition - curPosition);
+          result.lexType = number;
+          if (isExpNumber(copyOfCurPosition))
           {
-              result.Name += dividorInNumber;
+              result.name += dividorInNumber;
               copyOfCurPosition++;
               int secondStartPos = copyOfCurPosition;
               if (expression[copyOfCurPosition] == negative)
                   copyOfCurPosition++;
-              digit = expression.at(copyOfCurPosition).digitValue();
               while (expression.at(copyOfCurPosition).isDigit())
               {
                   copyOfCurPosition++;
                   if (copyOfCurPosition == lengthOfExpression)
                       break;
-                  digit = expression.at(copyOfCurPosition).digitValue();
               }
-              result.LexType = NumberExp;
-              result.Name += expression.mid(secondStartPos, copyOfCurPosition - secondStartPos);
+              result.lexType = numberExp;
+              result.name += expression.mid(secondStartPos, copyOfCurPosition - secondStartPos);
           }
           copyOfCurPosition--;
       }
@@ -90,36 +79,36 @@ Lexer::Lexem Lexer::LookAhead(bool nextToken)
           {
 
               case '(':
-                      result.LexType = OpenBracket;
+                      result.lexType = openBracket;
                   break;
               case ')':
-                  result.LexType = CloseBracket;
+                  result.lexType = closeBracket;
                   break;
               case '+':
-                  result.LexType = Add;
+                  result.lexType = add;
                   break;
               case '-':
-                  result.LexType = Minus;
+                  result.lexType = minus;
                   break;
               case '/':
-                  result.LexType = Divide;
+                  result.lexType = divide;
                   break;
               case '*':
-                  result.LexType = Multiply;
+                  result.lexType = multiply;
                   break;
               case '^':
-                  result.LexType = Degree;
+                  result.lexType = degree;
                   break;
               default:
                   break;
           }
 
 
-          if (result.LexType == Eof)
+          if (result.lexType == eof)
           {
 
               curPosition++;
-              result = LookAhead(nextToken);
+              result = lookAhead(nextToken);
           }
       }
   }
@@ -129,10 +118,10 @@ Lexer::Lexem Lexer::LookAhead(bool nextToken)
   return result;
 }
 
-  Lexer::Lexem Lexer::GetNextToken()
+  Lexer::Lexem Lexer::getNextToken()
 
 {
-  Lexem result = LookAhead(true);
+  Lexem result = lookAhead(true);
   return result;
 }
 

@@ -8,14 +8,14 @@
 class CalculateExpression
 {
 public:
-    QString CalculateExpress(QString expr, bool isExp);
+    QString calculateExpress(QString expr, bool isExp);
 
 private:
     MainWindow myMainWindow;
      QString expression;
      int lengthOfExpression;
-     bool IsNumber(int copyOfCurPosition);
-    bool IsExpon(int copyOfCurPosition);
+     bool isNumber(int copyOfCurPosition);
+    bool isExpon(int copyOfCurPosition);
 };
 
 #endif // CALCULATEEXPRESSION_H
