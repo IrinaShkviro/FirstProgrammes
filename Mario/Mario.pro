@@ -20,5 +20,3 @@ HEADERS  += \
     gamewidget.h \
     myConsts.h \
     mario.h
-
-FORMS    += mainwindow.ui

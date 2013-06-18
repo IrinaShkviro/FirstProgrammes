@@ -8,7 +8,7 @@ Mario::Mario()
 QRectF Mario::boundingRect() const
 {
     qreal penWidth = 1;
-    return (0 - penWidth/2, 0 - penWidth/2, 10 + penWidth/2, 10 + penWidth/2);
+    return QRectF(0 - penWidth/2, 0 - penWidth/2, 10 + penWidth/2, 10 + penWidth/2);
 }
 
 void Mario::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *GameWidget)

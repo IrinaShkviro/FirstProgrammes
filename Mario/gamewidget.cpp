@@ -12,5 +12,5 @@ GameWidget::GameWidget(QWidget *parent) :
     setScene(scene);
     scene->setBackgroundBrush(Qt::white);
 
-    //scene->addItem(myMario);
+    scene->addItem(myMario);
 }

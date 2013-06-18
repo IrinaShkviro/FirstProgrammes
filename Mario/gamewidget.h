@@ -3,6 +3,7 @@
 
 #include <QGraphicsView>
 #include "mario.h"
+#include <QRectF>
 
 
 class GameWidget : public QGraphicsView

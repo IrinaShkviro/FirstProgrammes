@@ -9,6 +9,8 @@ class Mario : public QGraphicsItem
 {
 public:
     Mario();
+    QRectF boundingRect();
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 private:
 
