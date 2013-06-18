@@ -1,8 +1,13 @@
 #include "mario.h"
 
-Mario::Mario()
+Mario::Mario(int x, int y):
+    myX(x),
+    myY(y)
 {
-    this->setPos(10, 10);
+    this->setPos(myX, myY);
+    this->setPos(myX + 300, myY + 200);
+    this->ItemIsFocusable = 0x4;
+    this->setFocus();
 }
 
 QRectF Mario::boundingRect() const
@@ -13,6 +18,10 @@ QRectF Mario::boundingRect() const
 
 void Mario::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *GameWidget)
 {
+    myX = this->pos().x();
+    myY = this->pos().y();
     painter->setBrush(Qt::red);
-    painter->drawRect(0, 0, 10, 10);
+    QRectF myRect = new QRectF(myX, myY, myX + 5, myY + 5);
+    painter->drawRect(myRect);
 }
+

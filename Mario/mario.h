@@ -8,13 +8,13 @@
 class Mario : public QGraphicsItem
 {
 public:
-    Mario();
+    Mario(int x, int y);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    int myX, myY;
 
 private:
 
-    
 };
 
 #endif // MARIO_H

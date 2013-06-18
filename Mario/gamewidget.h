@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include "mario.h"
 #include <QRectF>
+#include <QKeyEvent>
 
 
 class GameWidget : public QGraphicsView
@@ -18,8 +19,10 @@ private:
 
     
 signals:
+
     
 public slots:
+
     
 };
 
