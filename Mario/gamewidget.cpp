@@ -5,13 +5,18 @@
 GameWidget::GameWidget(QWidget *parent) :
     QGraphicsView(parent),
     scene(new QGraphicsScene),
-    myMario(new Mario(100, 300))
+    myMario(new Mario()),
+    myFirstBarrier(new FirstBarrier()),
+    mySecondBarrier(new SecondBarrier())
 {
     scene->setSceneRect(0, 0, sceneWidth, sceneHeight);
     setScene(scene);
     scene->setBackgroundBrush(Qt::white);
 
+    scene->addItem(myFirstBarrier);
+    scene->addItem(mySecondBarrier);
     scene->addItem(myMario);
+    scene->setFocusItem(myMario);
 }
 
 void GameWidget::keyPressEvent(QKeyEvent *event)
@@ -20,14 +25,17 @@ void GameWidget::keyPressEvent(QKeyEvent *event)
     {
         case Qt::Key_Right:
         {
-            myMario->myX += 5;
             myMario->moveBy(5, 0);
             break;
         }
         case Qt::Key_Left:
         {
-            myMario->myY += 5;
             myMario->moveBy(-5, 0);
+            break;
+        }
+        case Qt::Key_Space:
+        {
+            myMario->space();
             break;
         }
         default:
@@ -36,4 +44,9 @@ void GameWidget::keyPressEvent(QKeyEvent *event)
             break;
         }
     }
+}
+
+void GameWidget::createBarrier(QRect rect)
+{
+    scene->addRect(rect);
 }

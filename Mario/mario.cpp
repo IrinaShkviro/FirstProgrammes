@@ -1,27 +1,30 @@
 #include "mario.h"
 
-Mario::Mario(int x, int y):
-    myX(x),
-    myY(y)
+Mario::Mario()
 {
-    this->setPos(myX, myY);
-    this->setPos(myX + 300, myY + 200);
-    this->ItemIsFocusable = 0x4;
-    this->setFocus();
+    this->setPos(2, sceneHeight - mySize - 2);
 }
 
 QRectF Mario::boundingRect() const
 {
-    qreal penWidth = 1;
-    return QRectF(0 - penWidth/2, 0 - penWidth/2, 10 + penWidth/2, 10 + penWidth/2);
+    QRectF rect(0, 0, mySize, mySize);
+    return rect.adjusted(-2, -2, 2, 2);
 }
 
 void Mario::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *GameWidget)
 {
-    myX = this->pos().x();
-    myY = this->pos().y();
     painter->setBrush(Qt::red);
-    QRectF myRect = new QRectF(myX, myY, myX + 5, myY + 5);
-    painter->drawRect(myRect);
+    painter->drawRect(0, 0, mySize, mySize);
 }
 
+void Mario::space()
+{
+    QTimer *deltaTimer = new QTimer();
+    QObject::connect(deltaTimer, SIGNAL(timeout()), this, SLOT(jump()));
+    deltaTimer->start(75);
+}
+
+void Mario::jump()
+{
+    this->moveBy(0, 5);
+}

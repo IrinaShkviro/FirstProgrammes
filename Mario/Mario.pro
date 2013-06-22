@@ -14,9 +14,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     gamewidget.cpp \
-    mario.cpp
+    mario.cpp \
+    barriers.cpp \
+    firstbarrier.cpp \
+    secondbarrier.cpp
 
 HEADERS  += \
     gamewidget.h \
     myConsts.h \
-    mario.h
+    mario.h \
+    barriers.h \
+    firstbarrier.h \
+    secondbarrier.h

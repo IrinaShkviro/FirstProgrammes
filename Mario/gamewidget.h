@@ -5,6 +5,9 @@
 #include "mario.h"
 #include <QRectF>
 #include <QKeyEvent>
+#include "barriers.h"
+#include "firstbarrier.h"
+#include "secondbarrier.h"
 
 
 class GameWidget : public QGraphicsView
@@ -13,11 +16,15 @@ class GameWidget : public QGraphicsView
 public:
     GameWidget(QWidget *parent = 0);
     QGraphicsScene *scene;
+    void createBarrier(QRect rect);
 
 private:
     Mario *myMario;
+    Barriers *myBarriers;
+    FirstBarrier *myFirstBarrier;
+    SecondBarrier *mySecondBarrier;
+    void keyPressEvent(QKeyEvent *event);
 
-    
 signals:
 
     
