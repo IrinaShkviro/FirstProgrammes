@@ -20,7 +20,7 @@ void Mario::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 void Mario::space()
 {
     QTimer *deltaTimer = new QTimer();
-    QObject::connect(deltaTimer, SIGNAL(timeout()), this, SLOT(jump()));
+    connect(deltaTimer, SIGNAL(timeout()), this, SLOT(jump()));
     deltaTimer->start(75);
 }
 

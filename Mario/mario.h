@@ -1,15 +1,15 @@
 #ifndef MARIO_H
 #define MARIO_H
 
+#include <QObject>
 #include <QGraphicsItem>
 #include <QRectF>
 #include <QPainter>
 #include "myConsts.h"
 #include <QTimer>
-#include <QObject>
 
 
-class Mario : public QGraphicsItem
+class Mario : public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
