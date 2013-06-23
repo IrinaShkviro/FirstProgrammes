@@ -7,6 +7,7 @@
 #include <QPainter>
 #include "myConsts.h"
 #include <QTimer>
+#include <QThread>
 
 
 class Mario : public QObject, public QGraphicsItem
@@ -25,6 +26,7 @@ signals:
     
 public slots:
     void jump();
+    void down();
     
 };
 
