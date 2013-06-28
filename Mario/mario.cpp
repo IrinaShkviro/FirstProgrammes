@@ -25,13 +25,13 @@ void Mario::advance(int step)
 {
     if (!step) return;
 
-    QRectF myMarioBoard = this->boundingRect();
+    QRectF myMarioBoard = this->sceneBoundingRect();
     QList <QGraphicsItem *> collidedItems = this->collidingItems();
     bool downCollision = false;
     if (!collidedItems.isEmpty())
     {
         QGraphicsItem *myCollider = collidedItems.first();
-        QRectF colliderBoard = myCollider->boundingRect();
+        QRectF colliderBoard = myCollider->sceneBoundingRect();
         bool rightCollision = false, leftCollision = false, upCollision = false;
         if (myMarioBoard.right() >= colliderBoard.left()
                 && myMarioBoard.right() < colliderBoard.right()
@@ -83,7 +83,7 @@ void Mario::advance(int step)
 
     if (isJumpingUp)
     {
-        if (height < 70)
+        if (height < 70 && myMarioBoard.top() > 5)
         {
             height += 5;
             moveBy(0, -5);
@@ -96,7 +96,7 @@ void Mario::advance(int step)
     else
     {
         height = 0;
-        if (myMarioBoard.bottom() < sceneHeight - 5 && !downCollision)
+        if (myMarioBoard.bottom() <= sceneHeight - 3 && !downCollision)
         {
             moveBy(0, 5);
         }
@@ -108,12 +108,18 @@ void Mario::advance(int step)
 
     if (isMoveLeft)
     {
-        moveBy(-5, 0);
         isMoveLeft = false;
+        if (myMarioBoard.left() > 5)
+        {
+            moveBy(-5, 0);
+        }
     }
     if (isMoveRight)
     {
-        moveBy(5, 0);
         isMoveRight = false;
+        if (myMarioBoard.right() < sceneWidth - 5)
+        {
+            moveBy(5, 0);
+        }
     }
 }
