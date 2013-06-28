@@ -26,13 +26,13 @@ void Mario::advance(int step)
     if (!step) return;
 
     QRectF myMarioBoard = this->boundingRect();
-    isJumpingDown = true;
     QList <QGraphicsItem *> collidedItems = this->collidingItems();
+    bool downCollision = false;
     if (!collidedItems.isEmpty())
     {
         QGraphicsItem *myCollider = collidedItems.first();
         QRectF colliderBoard = myCollider->boundingRect();
-        bool rightCollision = false, leftCollision = false, upCollision = false, downCollision = false;
+        bool rightCollision = false, leftCollision = false, upCollision = false;
         if (myMarioBoard.right() >= colliderBoard.left()
                 && myMarioBoard.right() < colliderBoard.right()
                 && !(myMarioBoard.bottom() < colliderBoard.top() + 5
@@ -96,9 +96,13 @@ void Mario::advance(int step)
     else
     {
         height = 0;
-        if (myMarioBoard.bottom() < sceneHeight - 3 && isJumpingDown)
+        if (myMarioBoard.bottom() < sceneHeight - 5 && !downCollision)
         {
             moveBy(0, 5);
+        }
+        else
+        {
+            isJumpingDown = false;
         }
     }
 
