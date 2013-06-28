@@ -25,17 +25,18 @@ void GameWidget::keyPressEvent(QKeyEvent *event)
     {
         case Qt::Key_Right:
         {
-            myMario->moveBy(5, 0);
+            myMario->isMoveRight = true;
             break;
         }
         case Qt::Key_Left:
         {
-            myMario->moveBy(-5, 0);
+            myMario->isMoveLeft = true;
             break;
         }
         case Qt::Key_Space:
         {
-            myMario->space();
+            if (!myMario->isJumpingDown)
+                myMario->isJumpingUp = true;
             break;
         }
         default:
