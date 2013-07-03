@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>MyMario.jpg</file>
+        <file>WinGame.jpg</file>
+        <file>GameOver.jpg</file>
+    </qresource>
+</RCC>

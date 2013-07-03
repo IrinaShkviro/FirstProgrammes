@@ -1,7 +1,6 @@
 #ifndef FIRSTBARRIER_H
 #define FIRSTBARRIER_H
 
-#include "myConsts.h"
 #include "barriers.h"
 
 class FirstBarrier : public Barriers

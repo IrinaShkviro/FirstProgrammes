@@ -2,7 +2,7 @@
 
 SecondBarrier::SecondBarrier()
 {
-    this->setPos(300, 500);
+    this->setPos(170, 500);
 }
 
 QRectF SecondBarrier::boundingRect() const

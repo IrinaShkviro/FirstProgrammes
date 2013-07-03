@@ -1,19 +1,19 @@
-#ifndef SECONDBARRIER_H
-#define SECONDBARRIER_H
+#ifndef THIRDBARRIER_H
+#define THIRDBARRIER_H
 
 #include "myConsts.h"
 #include "barriers.h"
 
-class SecondBarrier : public Barriers
+class ThirdBarrier : public Barriers
 {
 public:
-    SecondBarrier();
+    ThirdBarrier();
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 private:
-    const int myWidth = 170;
-    const int myHeight = 100;
+    const int myWidth = 100;
+    const int myHeight = 60;
 };
 
-#endif // SECONDBARRIER_H
+#endif // THIRDBARRIER_H

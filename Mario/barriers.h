@@ -15,6 +15,9 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    enum {Type = UserType + 1};
+    int type() const {return Type;};
+
 };
 
 #endif // BARRIERS_H
