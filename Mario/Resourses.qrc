@@ -1,7 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>MyMario.jpg</file>
         <file>WinGame.jpg</file>
         <file>GameOver.jpg</file>
+        <file>MyMario.gif</file>
+        <file>MyMario.jpg</file>
     </qresource>
 </RCC>

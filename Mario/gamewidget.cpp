@@ -20,8 +20,8 @@ GameWidget::GameWidget(QApplication *application) :
     scene->setSceneRect(0, 0, sceneWidth, sceneHeight);
     setScene(scene);
     scene->setBackgroundBrush(Qt::yellow);
-    QObject::connect(myMario, SIGNAL(lose), this, SLOT(gameOver()));
-    QObject::connect(myMario, SIGNAL(win), this, SLOT(winGame()));
+    QObject::connect(myMario, SIGNAL(lose()), this, SLOT(gameOver()));
+    QObject::connect(myMario, SIGNAL(win()), this, SLOT(winGame()));
 }
 
 void GameWidget::newGame()
@@ -31,7 +31,7 @@ void GameWidget::newGame()
     {
         delete myMainMenu->mainMenu[i];
     }
-    delete myMainMenu;
+    scene->clear();
     scene->setBackgroundBrush(Qt::lightGray);
     scene->addItem(myFirstBarrier);
     scene->addItem(mySecondBarrier);
@@ -39,7 +39,6 @@ void GameWidget::newGame()
     scene->addItem(myMario);
     scene->addItem(myFirstFire);
     scene->addItem(myFirstEnemy);
-    scene->setFocusItem(myMario);
 }
 
 void GameWidget::exitGame()
@@ -49,29 +48,22 @@ void GameWidget::exitGame()
 
 void GameWidget::gameOver()
 {
-    delete myMario;
-    delete myFirstBarrier;
-    delete mySecondBarrier;
-    delete myThirdBarrier;
-    delete myFirstFire;
-    delete myFirstEnemy;
+    scene->clear();
     scene->addItem(loser);
+    menuView = true;
+    myMainMenu = new MainMenu(scene);
 }
 
 void GameWidget::winGame()
 {
-    delete myMario;
-    delete myFirstBarrier;
-    delete mySecondBarrier;
-    delete myThirdBarrier;
-    delete myFirstFire;
-    delete myFirstEnemy;
-    scene->addItem(winner);
+    scene->clear();
+    //scene->addItem(winner);
+    menuView = true;
+    myMainMenu = new MainMenu(scene);
 }
 
 void GameWidget::keyPressEvent(QKeyEvent *event)
 {
-    qDebug()<< event->key()<<"\r"<< Qt::Key_Enter;
     switch(event->key())
     {
         case Qt::Key_Right:

@@ -6,28 +6,14 @@ Mario::Mario():
     isJumpingUp(false),
     isMoveLeft(false),
     isMoveRight(false),
-    myX(2),
-    myY(sceneHeight - mySize - 2),
-    theEnd(false)
+    myX(0),
+    myY(sceneHeight - mySize),
+    theEnd(false),
+    mario(QPixmap(":/MyMario.jpg"))
 {
-    this->setPixmap(QPixmap(":/MyMario.jpg"));
-    this->setPos(2, sceneHeight - mySize - 2);
-    QPixmap test = this->pixmap();
-}
-
-QRectF Mario::boundingRect() const
-{
-    QRectF rect(0, 0, mySize, mySize);
-    return rect.adjusted(-2, -2, 2, 2);
-}
-
-void Mario::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *GameWidget)
-{
-  //  QRectF myRect(0, 0, mySize, mySize);
-    //painter->drawPixmap(sceneHeight - mySize -2, 2, *mario);
-  //  this->setPixmap(*mario);
-   // painter->setBrush(Qt::red);
-   // painter->drawRect(0, 0, mySize, mySize);
+    this->setPixmap(mario);
+    this->setScale(0.06);
+    this->setPos(myX, myY);
 }
 
 void Mario::advance(int step)
@@ -98,6 +84,7 @@ void Mario::advance(int step)
                 if (myCollider->type() == Fire::Type)
                 {
                     emit lose();
+                    theEnd = true;
                 }
                 else
                 {
@@ -109,72 +96,77 @@ void Mario::advance(int step)
                     else
                     {
                         emit lose();
+                        theEnd = true;
                     }
                 }
             }
         }
     }
-
-    if (isJumpingUp)
-    {
-        if (height < 70 && myMarioBoard.top() > 5)
-        {
-            height += 5;
-            moveBy(0, -5);
-            myY -=5;
-        }
-        else
-        {
-            isJumpingUp = false;
-            isJumpingDown = true;
-        }
-    }
-    else
-    {
-        if (height >= 5)
-        {
-            height -= 5;
-        }
-        else
-        {
-            height = 0;
-        }
-        if (myMarioBoard.bottom() <= sceneHeight - 3 && !downCollision)
-        {
-            moveBy(0, 5);
-            myY += 5;
-        }
-        else
-        {
-            height = 0;
-            isJumpingDown = false;
-        }
-    }
-
-    if (isMoveLeft)
-    {
-        isMoveLeft = false;
-        if (myMarioBoard.left() > 5)
-        {
-            moveBy(-5, 0);
-            myX -= 5;
-        }
-    }
-    if (isMoveRight)
-    {
-        isMoveRight = false;
-        if (myMarioBoard.right() < sceneWidth - 5)
-        {
-            moveBy(5, 0);
-            myX += 5;
-        }
-        else
-        {
-            emit win();
-        }
-    }
     if (!theEnd)
     {
-        this->setPos(myX, myY);
+        if (isJumpingUp)
+        {
+            if (height < 70 && myMarioBoard.top() > 5)
+            {
+                height += 5;
+                moveBy(0, -5);
+                myY -=5;
+            }
+            else
+            {
+                isJumpingUp = false;
+                isJumpingDown = true;
+            }
+        }
+        else
+        {
+            if (height >= 5)
+            {
+                height -= 5;
+            }
+            else
+            {
+                height = 0;
+            }
+            if (myMarioBoard.bottom() <= sceneHeight - 3 && !downCollision)
+            {
+                moveBy(0, 5);
+                myY += 5;
+            }
+            else
+            {
+                height = 0;
+                isJumpingDown = false;
+            }
+        }
+
+        if (isMoveLeft)
+        {
+            isMoveLeft = false;
+            if (myMarioBoard.left() > 5)
+            {
+                moveBy(-5, 0);
+                myX -= 5;
+            }
+        }
+        if (isMoveRight)
+        {
+            isMoveRight = false;
+            if (myMarioBoard.right() < sceneWidth - 5)
+            {
+                moveBy(5, 0);
+                myX += 5;
+            }
+            else
+            {
+                emit win();
+                theEnd = true;
+            }
+        }
+        if (!theEnd)
+        {
+            this->setPos(myX, myY);
+        }
     }
 }
+

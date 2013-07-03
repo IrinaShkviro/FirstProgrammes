@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include <QRectF>
 #include <QPainter>
+#include <QPixmap>
 #include "myConsts.h"
 #include <QTimer>
 #include <QThread>
@@ -18,8 +19,6 @@ class Mario : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     explicit Mario();
-    QRectF boundingRect() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     bool isJumpingUp, isJumpingDown, isMoveRight, isMoveLeft;
 
 private:
@@ -27,6 +26,7 @@ private:
     int height;
     int myX, myY;
     bool theEnd;
+    QPixmap mario;
 
 
 protected:

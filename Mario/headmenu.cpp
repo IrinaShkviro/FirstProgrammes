@@ -4,14 +4,6 @@ HeadMenu::HeadMenu(QWidget *parent)
 {
     p = parent;
     createMenuBar();
-   /* this->setTearOffEnabled(true);
-    this->addAction("&New game", this, SLOT(newGame()));
-    QMenu* myMenuSubMenu = new QMenu("&Load game", this);
-    this->addMenu(myMenuSubMenu);
-    myMenuSubMenu->addAction("&1");
-    myMenuSubMenu->addAction("&2");
-
-    this->addAction("&Exit", this, SLOT(quit()));*/
 }
 
 void HeadMenu::createActions()

@@ -29,11 +29,6 @@ void MainMenu::setMainMenuText(QGraphicsTextItem *mainMenuText, int posX, int po
     pScene->addItem(mainMenuText);
 }
 
-void MainMenu::pushMenuText()
-{
-    pScene->clear();
-}
-
 void MainMenu::moveNext()
 {
     mainMenu[menuSelector]->setFont(QFont("Terminus"));

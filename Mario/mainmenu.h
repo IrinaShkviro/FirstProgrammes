@@ -10,7 +10,6 @@ class MainMenu : public Menu
 public:
     MainMenu(QGraphicsScene* scene);
     void setMainMenu();
-    void pushMenuText();
     QGraphicsTextItem *mainMenu[4];
     int menuSelector;
     QFont myFont;
