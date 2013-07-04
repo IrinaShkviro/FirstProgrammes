@@ -4,5 +4,7 @@
         <file>GameOver.jpg</file>
         <file>MyMario.gif</file>
         <file>MyMario.jpg</file>
+        <file>EnemyRotate.jpg</file>
+        <file>Enemy.jpg</file>
     </qresource>
 </RCC>

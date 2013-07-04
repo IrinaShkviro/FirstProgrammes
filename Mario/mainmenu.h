@@ -1,14 +1,17 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-#include "menu.h"
 #include <QFont>
+#include <QGraphicsScene>
+#include "myConsts.h"
+#include <QGraphicsTextItem>
 
-class MainMenu : public Menu
+class MainMenu
 {
 
 public:
     MainMenu(QGraphicsScene* scene);
+    ~MainMenu();
     void setMainMenu();
     QGraphicsTextItem *mainMenu[4];
     int menuSelector;

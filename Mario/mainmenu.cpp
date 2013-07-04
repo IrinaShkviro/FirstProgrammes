@@ -45,7 +45,7 @@ void MainMenu::moveNext()
 
 void MainMenu::movePrev()
 {
-    mainMenu[menuSelector - 1]->setFont(QFont("Terminus"));
+    mainMenu[menuSelector]->setFont(QFont("Terminus"));
     if (menuSelector > 0)
     {
         menuSelector --;
@@ -55,4 +55,12 @@ void MainMenu::movePrev()
         menuSelector = 3;
     }
     mainMenu[menuSelector]->setFont(myFont);
+}
+
+MainMenu::~MainMenu()
+{
+    for (int i = 0; i < 3; i++)
+    {
+        delete mainMenu[i];
+    }
 }

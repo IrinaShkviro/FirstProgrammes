@@ -16,32 +16,20 @@ SOURCES += main.cpp \
     gamewidget.cpp \
     mario.cpp \
     barriers.cpp \
-    firstbarrier.cpp \
-    secondbarrier.cpp \
-    thirdbarrier.cpp \
     enemy.cpp \
-    firstfire.cpp \
     fire.cpp \
-    firstenemy.cpp \
     headmenu.cpp \
-    mainmenu.cpp \
-    menu.cpp
+    mainmenu.cpp
 
 HEADERS  += \
     gamewidget.h \
     myConsts.h \
     mario.h \
     barriers.h \
-    firstbarrier.h \
-    secondbarrier.h \
-    thirdbarrier.h \
     enemy.h \
-    firstfire.h \
     fire.h \
-    firstenemy.h \
     headmenu.h \
-    mainmenu.h \
-    menu.h
+    mainmenu.h
 
 RESOURCES += \
     Resourses.qrc

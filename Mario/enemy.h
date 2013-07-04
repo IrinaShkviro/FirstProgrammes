@@ -2,18 +2,26 @@
 #define ENEMY_H
 
 #include <QObject>
-#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
 #include "myConsts.h"
 #include <QRectF>
 #include <QPainter>
+#include <QRectF>
+#include <QPixmap>
 
-class Enemy : public QObject, public QGraphicsItem
+class Enemy : public QObject, public QGraphicsPixmapItem
 {
 Q_OBJECT
 public:
-    Enemy();
+    Enemy(int size, int rightBoard, int leftBoard, QPixmap enemy, QPixmap enemyRotate);
     enum {Type = UserType + 2};
     int type() const {return Type;};
+
+private:
+    int mySize, myRightBoard, myLeftBoard;
+    bool isMoveRight;
+    QPixmap myEnemy;
+    QPixmap myEnemyRotate;
 
 protected:
     void advance(int step);

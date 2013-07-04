@@ -6,12 +6,6 @@
 GameWidget::GameWidget(QApplication *application) :
     myApplication(application),
     scene(new QGraphicsScene),
-    myMario(new Mario()),
-    myFirstBarrier(new FirstBarrier()),
-    mySecondBarrier(new SecondBarrier()),
-    myThirdBarrier(new ThirdBarrier()),
-    myFirstFire(new FirstFire()),
-    myFirstEnemy(new FirstEnemy()),
     myMainMenu(new MainMenu(scene)),
     menuView(true),
     loser(new QGraphicsPixmapItem(QPixmap(":/GameOver.jpg"))),
@@ -20,25 +14,30 @@ GameWidget::GameWidget(QApplication *application) :
     scene->setSceneRect(0, 0, sceneWidth, sceneHeight);
     setScene(scene);
     scene->setBackgroundBrush(Qt::yellow);
-    QObject::connect(myMario, SIGNAL(lose()), this, SLOT(gameOver()));
-    QObject::connect(myMario, SIGNAL(win()), this, SLOT(winGame()));
 }
 
 void GameWidget::newGame()
 {
     menuView = false;
-    for (int i = 0; i < 4; i++)
-    {
-        delete myMainMenu->mainMenu[i];
-    }
+    delete myMainMenu;
     scene->clear();
-    scene->setBackgroundBrush(Qt::lightGray);
-    scene->addItem(myFirstBarrier);
-    scene->addItem(mySecondBarrier);
-    scene->addItem(myThirdBarrier);
+    scene->setBackgroundBrush(Qt::white);
+    firstBarrier = new Barriers(70, 50, 100, 550);
+    secondBarrier = new Barriers(170, 80, 170, 520);
+    thirdBarrier = new Barriers(100, 60, 400, 550);
+    firstFire = new Fire(340, 595, 60, 5);
+    secondFire = new Fire(0, sceneHeight - 2, 60, 2);
+    firstEnemy = new Enemy(35, 750, 502, QPixmap(":/Enemy.jpg"), QPixmap(":/EnemyRotate.jpg"));
+    myMario = new Mario();
+    QObject::connect(myMario, SIGNAL(lose()), this, SLOT(gameOver()));
+    QObject::connect(myMario, SIGNAL(win()), this, SLOT(winGame()));
+    scene->addItem(firstBarrier);
+    scene->addItem(secondBarrier);
+    scene->addItem(thirdBarrier);
     scene->addItem(myMario);
-    scene->addItem(myFirstFire);
-    scene->addItem(myFirstEnemy);
+    scene->addItem(firstFire);
+    scene->addItem(secondFire);
+    scene->addItem(firstEnemy);
 }
 
 void GameWidget::exitGame()
@@ -48,7 +47,8 @@ void GameWidget::exitGame()
 
 void GameWidget::gameOver()
 {
-    scene->clear();
+//    scene->clear();
+    loser->setScale(1.2);
     scene->addItem(loser);
     menuView = true;
     myMainMenu = new MainMenu(scene);
@@ -57,9 +57,10 @@ void GameWidget::gameOver()
 void GameWidget::winGame()
 {
     scene->clear();
-    //scene->addItem(winner);
+    scene->addItem(winner);
     menuView = true;
     myMainMenu = new MainMenu(scene);
+    menuView = true;
 }
 
 void GameWidget::keyPressEvent(QKeyEvent *event)
@@ -148,9 +149,4 @@ void GameWidget::menuSelect()
                 break;
         }
     }
-}
-
-void GameWidget::createBarrier(QRect rect)
-{
-    scene->addRect(rect);
 }

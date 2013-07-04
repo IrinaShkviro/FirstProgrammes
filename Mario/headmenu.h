@@ -1,9 +1,9 @@
 #ifndef HEADMENU_H
 #define HEADMENU_H
 
-#include "menu.h"
+#include <QMenuBar>
 
-class HeadMenu : public Menu
+class HeadMenu : public QMenuBar
 {
 
 public:

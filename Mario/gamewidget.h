@@ -9,11 +9,8 @@
 #include <QPixmap>
 #include <QGraphicsPixmapItem>
 #include "barriers.h"
-#include "firstbarrier.h"
-#include "secondbarrier.h"
-#include "thirdbarrier.h"
-#include "firstfire.h"
-#include "firstenemy.h"
+#include "enemy.h"
+#include "fire.h"
 #include "headmenu.h"
 #include "mainmenu.h"
 
@@ -24,18 +21,17 @@ class GameWidget : public QGraphicsView
 public:
     GameWidget(QApplication *application);
     QGraphicsScene *scene;
-    void createBarrier(QRect rect);
     bool menuView;
 
 private:
     QApplication *myApplication;
     Mario *myMario;
-    Barriers *myBarriers;
-    FirstBarrier *myFirstBarrier;
-    SecondBarrier *mySecondBarrier;
-    ThirdBarrier *myThirdBarrier;
-    FirstFire *myFirstFire;
-    FirstEnemy *myFirstEnemy;
+    Barriers *firstBarrier;
+    Barriers *secondBarrier;
+    Barriers *thirdBarrier;
+    Fire *firstFire;
+    Fire *secondFire;
+    Enemy *firstEnemy;
     MainMenu *myMainMenu;
     QGraphicsPixmapItem *loser;
     QGraphicsPixmapItem *winner;

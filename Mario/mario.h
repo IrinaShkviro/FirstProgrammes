@@ -12,6 +12,7 @@
 #include <QList>
 #include "barriers.h"
 #include "fire.h"
+#include "enemy.h"
 
 
 class Mario : public QObject, public QGraphicsPixmapItem

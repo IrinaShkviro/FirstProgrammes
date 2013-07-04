@@ -83,20 +83,26 @@ void Mario::advance(int step)
             {
                 if (myCollider->type() == Fire::Type)
                 {
+               //     collidedItems.removeOne(myCollider);
+                //    delete myCollider;
                     emit lose();
                     theEnd = true;
                 }
                 else
                 {
-                    if (downCollision)
+                    if (myCollider->type() == Enemy::Type)
                     {
-                        delete myCollider;
-                        break;
-                    }
-                    else
-                    {
-                        emit lose();
-                        theEnd = true;
+                        if (downCollision)
+                        {
+                            delete myCollider;
+                            break;
+                        }
+                        else
+                        {
+
+                            emit lose();
+                            theEnd = true;
+                        }
                     }
                 }
             }
