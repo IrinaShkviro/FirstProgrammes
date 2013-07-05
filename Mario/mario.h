@@ -29,7 +29,6 @@ private:
     bool theEnd;
     QPixmap mario;
 
-
 protected:
     void advance(int step);
 

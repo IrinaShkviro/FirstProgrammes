@@ -1,8 +1,10 @@
 #ifndef GAMEWIDGET_H
 #define GAMEWIDGET_H
 
+#include <QMainWindow>
 #include <QGraphicsView>
 #include <QApplication>
+#include <QBrush>
 #include "mario.h"
 #include <QRectF>
 #include <QKeyEvent>
@@ -30,11 +32,12 @@ private:
     Barriers *secondBarrier;
     Barriers *thirdBarrier;
     Fire *firstFire;
-    Fire *secondFire;
+    QBrush myBackgroundBrush;
+    QBrush myWinnerBrush;
+    QBrush myLoserBrush;
     Enemy *firstEnemy;
     MainMenu *myMainMenu;
-    QGraphicsPixmapItem *loser;
-    QGraphicsPixmapItem *winner;
+    HeadMenu *myHeadMenu;
     void keyPressEvent(QKeyEvent *event);
     void menuSelect();
     void newGame();

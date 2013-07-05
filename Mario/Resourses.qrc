@@ -6,5 +6,6 @@
         <file>MyMario.jpg</file>
         <file>EnemyRotate.jpg</file>
         <file>Enemy.jpg</file>
+        <file>Background.jpg</file>
     </qresource>
 </RCC>
