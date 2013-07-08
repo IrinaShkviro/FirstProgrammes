@@ -1,7 +1,8 @@
 #include <QDebug>
 #include "mario.h"
 
-Mario::Mario():
+Mario::Mario(QGraphicsScene *scene):
+    pScene(scene),
     isJumpingDown(false),
     isJumpingUp(false),
     isMoveLeft(false),
@@ -94,7 +95,8 @@ void Mario::advance(int step)
                     {
                         if (downCollision)
                         {
-                            delete myCollider;
+                            pScene->removeItem(myCollider);
+                        //    delete myCollider;
                             break;
                         }
                         else

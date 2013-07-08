@@ -6,6 +6,7 @@
 #include <QRectF>
 #include <QPainter>
 #include <QPixmap>
+#include <QGraphicsScene>
 #include "myConsts.h"
 #include <QTimer>
 #include <QThread>
@@ -19,10 +20,11 @@ class Mario : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit Mario();
+    explicit Mario(QGraphicsScene *scene);
     bool isJumpingUp, isJumpingDown, isMoveRight, isMoveLeft;
 
 private:
+    QGraphicsScene *pScene;
     const int mySize = 30;
     int height;
     int myX, myY;

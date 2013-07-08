@@ -21,14 +21,14 @@ void GameWidget::newGame()
 { 
     menuView = false;
     delete myMainMenu;
-    scene->clear();
+   // scene->clear();
     scene->setBackgroundBrush(myBackgroundBrush);
     firstBarrier = new Barriers(70, 50, 100, 550);
     secondBarrier = new Barriers(170, 80, 170, 520);
     thirdBarrier = new Barriers(100, 60, 400, 550);
     firstFire = new Fire(340, 595, 60, 5);
     firstEnemy = new Enemy(35, 750, 502, QPixmap(":/Enemy.jpg"), QPixmap(":/EnemyRotate.jpg"));
-    myMario = new Mario();
+    myMario = new Mario(scene);
     QObject::connect(myMario, SIGNAL(lose()), this, SLOT(gameOver()));
     QObject::connect(myMario, SIGNAL(win()), this, SLOT(winGame()));
     scene->addItem(firstBarrier);
@@ -47,6 +47,7 @@ void GameWidget::exitGame()
 void GameWidget::gameOver()
 {
   //  scene->removeItem(firstBarrier);
+   // delete firstBarrier;
     delete myMario;
     delete firstFire;
     delete firstEnemy;
@@ -62,7 +63,6 @@ void GameWidget::winGame()
     scene->setBackgroundBrush(myWinnerBrush);
     menuView = true;
     myMainMenu = new MainMenu(scene);
-    menuView = true;
 }
 
 void GameWidget::keyPressEvent(QKeyEvent *event)
