@@ -5,6 +5,7 @@ Barriers::Barriers(int width, int height, int posX, int posY):
     myHeight(height)
 {
     this->setPos(posX, posY);
+    myBarrierBrush.setTextureImage(QImage(":/Barriers.jpg"));
 }
 
 QRectF Barriers::boundingRect() const
@@ -15,6 +16,6 @@ QRectF Barriers::boundingRect() const
 
 void Barriers::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::black);
+    painter->setBrush(myBarrierBrush);
     painter->drawRect(0, 0, myWidth, myHeight);
 }

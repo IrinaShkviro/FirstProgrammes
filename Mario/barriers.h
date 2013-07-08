@@ -14,6 +14,7 @@ public:
     Barriers(int width, int height, int posX, int posY);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QBrush myBarrierBrush;
 
     enum {Type = UserType + 1};
     int type() const {return Type;};

@@ -5,6 +5,7 @@ Fire::Fire(int posX, int posY, int width, int height):
     myHeight(height)
 {
     this->setPos(posX, posY);
+    myFireBrush.setTextureImage(QImage(":/Fire.jpg"));
 }
 QRectF Fire::boundingRect() const
 {
@@ -14,6 +15,6 @@ QRectF Fire::boundingRect() const
 
 void Fire::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::red);
+    painter->setBrush(myFireBrush);
     painter->drawRect(0, 0, myWidth, myHeight);
 }

@@ -13,6 +13,7 @@ public:
     Fire(int posX, int posY, int width, int height);
     enum {Type = UserType + 3};
     QRectF boundingRect() const;
+    QBrush myFireBrush;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     int type() const {return Type;};
 

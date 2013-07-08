@@ -46,6 +46,7 @@ void GameWidget::exitGame()
 
 void GameWidget::gameOver()
 {
+  //  scene->removeItem(firstBarrier);
     delete myMario;
     delete firstFire;
     delete firstEnemy;
