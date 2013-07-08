@@ -22,7 +22,37 @@ class Mario : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     explicit Mario(QGraphicsScene *scene);
-    bool isJumpingUp, isJumpingDown, isMoveRight, isMoveLeft;
+    enum moveCondition
+    {
+        right,
+        left,
+        down,
+        up,
+        rightAndDown,
+        leftAndDown,
+        rightAndUp,
+        leftAndUp,
+        stay
+    };
+    moveCondition myCondition;
+
+   enum collisionType
+   {
+       rightCol,
+       leftCol,
+       downCol,
+       upCol,
+       rightAndUpCol,
+       leftAndUpCol,
+       rightAndDownCol,
+       leftAndDownCol,
+       noCollision
+   };
+   collisionType myCollision;
+   bool isMoveDown();
+   bool isMoveUp();
+   bool isMoveLeft();
+   bool isMoveRight();
 
 private:
     QGraphicsScene *pScene;
@@ -31,6 +61,14 @@ private:
     int myX, myY;
     bool theEnd;
     QPixmap mario;
+    void defineTypeOfCollision(QRectF myMarioBoard, QRectF colliderBoard);
+    bool isUpCollision();
+    bool isDownCollision();
+    bool isRightCollision();
+    bool isLeftCollision();
+    void barrierCollision();
+    void deleteDownMove();
+    void deleteUpMove();
 
 protected:
     void advance(int step);

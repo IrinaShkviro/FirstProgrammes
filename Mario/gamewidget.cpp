@@ -75,7 +75,14 @@ void GameWidget::keyPressEvent(QKeyEvent *event)
         {
             if (!menuView)
             {
-                myMario->isMoveRight = true;
+                if (myMario->myCondition == myMario->up)
+                {
+                    myMario->myCondition = myMario->rightAndUp;
+                }
+                else
+                {
+                    myMario->myCondition = myMario->rightAndDown;
+                }
             }
             break;
         }
@@ -83,7 +90,14 @@ void GameWidget::keyPressEvent(QKeyEvent *event)
         {
             if (!menuView)
             {
-                myMario->isMoveLeft = true;
+                if (myMario->myCondition == myMario->up)
+                {
+                    myMario->myCondition = myMario->leftAndUp;
+                }
+                else
+                {
+                    myMario->myCondition = myMario->leftAndDown;
+                }
             }
             break;
         }
@@ -91,8 +105,24 @@ void GameWidget::keyPressEvent(QKeyEvent *event)
         {
             if (!menuView)
             {
-                if (!myMario->isJumpingDown)
-                    myMario->isJumpingUp = true;
+                if (!(myMario->isMoveDown()))
+                {
+                    if (myMario->isMoveRight())
+                    {
+                        myMario->myCondition = myMario->rightAndUp;
+                    }
+                    else
+                    {
+                        if (myMario->isMoveLeft())
+                        {
+                            myMario->myCondition = myMario->leftAndUp;
+                        }
+                        else
+                        {
+                            myMario->myCondition = myMario->up;
+                        }
+                    }
+                }
             }
             break;
         }
