@@ -3,8 +3,9 @@
 
 #include <QFont>
 #include <QGraphicsScene>
-#include "myConsts.h"
 #include <QGraphicsTextItem>
+
+#include "myConsts.h"
 
 class MainMenu
 {

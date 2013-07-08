@@ -1,6 +1,6 @@
 #include "fire.h"
 
-Fire::Fire(int posX, int posY, int width, int height):
+Fire::Fire( int width, int height, int posX, int posY):
     myWidth(width),
     myHeight(height)
 {

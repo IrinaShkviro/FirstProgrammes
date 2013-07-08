@@ -2,11 +2,11 @@
     <qresource prefix="/">
         <file>WinGame.jpg</file>
         <file>GameOver.jpg</file>
-        <file>MyMario.jpg</file>
-        <file>EnemyRotate.jpg</file>
-        <file>Enemy.jpg</file>
         <file>Background.jpg</file>
         <file>Fire.jpg</file>
         <file>Barriers.jpg</file>
+        <file>MyMario.gif</file>
+        <file>Enemy.gif</file>
+        <file>EnemyRotate.gif</file>
     </qresource>
 </RCC>

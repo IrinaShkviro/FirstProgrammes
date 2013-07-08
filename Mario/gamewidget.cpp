@@ -20,14 +20,13 @@ GameWidget::GameWidget(QApplication *application) :
 void GameWidget::newGame()
 { 
     menuView = false;
-    delete myMainMenu;
-   // scene->clear();
+    scene->clear();
     scene->setBackgroundBrush(myBackgroundBrush);
     firstBarrier = new Barriers(70, 50, 100, 550);
     secondBarrier = new Barriers(170, 80, 170, 520);
     thirdBarrier = new Barriers(100, 60, 400, 550);
-    firstFire = new Fire(340, 595, 60, 5);
-    firstEnemy = new Enemy(35, 750, 502, QPixmap(":/Enemy.jpg"), QPixmap(":/EnemyRotate.jpg"));
+    firstFire = new Fire(60, 5, 340, 595);
+    firstEnemy = new Enemy(35, 750, 502, QPixmap(":/Enemy.gif"), QPixmap(":/EnemyRotate.gif"));
     myMario = new Mario(scene);
     QObject::connect(myMario, SIGNAL(lose()), this, SLOT(gameOver()));
     QObject::connect(myMario, SIGNAL(win()), this, SLOT(winGame()));
@@ -46,11 +45,10 @@ void GameWidget::exitGame()
 
 void GameWidget::gameOver()
 {
-  //  scene->removeItem(firstBarrier);
-   // delete firstBarrier;
-    delete myMario;
-    delete firstFire;
-    delete firstEnemy;
+    scene->clear();
+    firstBarrier = NULL;
+    secondBarrier = NULL;
+    thirdBarrier = NULL;
 
     scene->setBackgroundBrush(myLoserBrush);
     menuView = true;
@@ -60,6 +58,10 @@ void GameWidget::gameOver()
 void GameWidget::winGame()
 {
     scene->clear();
+    firstBarrier = NULL;
+    secondBarrier = NULL;
+    thirdBarrier = NULL;
+
     scene->setBackgroundBrush(myWinnerBrush);
     menuView = true;
     myMainMenu = new MainMenu(scene);

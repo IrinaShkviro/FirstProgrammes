@@ -7,10 +7,11 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QGraphicsScene>
-#include "myConsts.h"
 #include <QTimer>
 #include <QThread>
 #include <QList>
+
+#include "myConsts.h"
 #include "barriers.h"
 #include "fire.h"
 #include "enemy.h"
@@ -39,7 +40,8 @@ signals:
     void win();
     
 public slots:
-
+    void loseEmiter();
+    void winEmiter();
     
 };
 

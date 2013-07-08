@@ -10,6 +10,7 @@
 #include <QKeyEvent>
 #include <QPixmap>
 #include <QGraphicsPixmapItem>
+
 #include "barriers.h"
 #include "enemy.h"
 #include "fire.h"

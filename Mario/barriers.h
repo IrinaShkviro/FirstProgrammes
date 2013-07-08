@@ -2,9 +2,10 @@
 #define BARRIERS_H
 
 #include <QGraphicsItem>
-#include "myConsts.h"
 #include <QRectF>
 #include <QPainter>
+
+#include "myConsts.h"
 
 
 class Barriers : public QGraphicsItem
@@ -17,7 +18,7 @@ public:
     QBrush myBarrierBrush;
 
     enum {Type = UserType + 1};
-    int type() const {return Type;};
+    int type() const { return Type; }
 
 private:
     int myWidth, myHeight;

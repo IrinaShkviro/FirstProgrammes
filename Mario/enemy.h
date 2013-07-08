@@ -15,7 +15,7 @@ Q_OBJECT
 public:
     Enemy(int size, int rightBoard, int leftBoard, QPixmap enemy, QPixmap enemyRotate);
     enum {Type = UserType + 2};
-    int type() const {return Type;};
+    int type() const { return Type; }
 
 private:
     int mySize, myRightBoard, myLeftBoard;

@@ -10,7 +10,7 @@ Mario::Mario(QGraphicsScene *scene):
     myX(0),
     myY(sceneHeight - mySize),
     theEnd(false),
-    mario(QPixmap(":/MyMario.jpg"))
+    mario(QPixmap(":/MyMario.gif"))
 {
     this->setPixmap(mario);
     this->setScale(0.06);
@@ -54,6 +54,7 @@ void Mario::advance(int step)
                 upCollision = true;
             }
             if (myMarioBoard.bottom() >= colliderBoard.top()
+                    && myMarioBoard.bottom() <= colliderBoard.top() + 5
                     && myMarioBoard.bottom() < colliderBoard.bottom()
                     && !(myMarioBoard.right() < colliderBoard.left() + 5
                          || myMarioBoard.left() > colliderBoard.right() - 5))
@@ -84,9 +85,7 @@ void Mario::advance(int step)
             {
                 if (myCollider->type() == Fire::Type)
                 {
-               //     collidedItems.removeOne(myCollider);
-                //    delete myCollider;
-                    emit lose();
+                    QTimer::singleShot(5, this, SLOT(loseEmiter()));
                     theEnd = true;
                 }
                 else
@@ -96,13 +95,11 @@ void Mario::advance(int step)
                         if (downCollision)
                         {
                             pScene->removeItem(myCollider);
-                        //    delete myCollider;
                             break;
                         }
                         else
                         {
-
-                            emit lose();
+                            QTimer::singleShot(5, this, SLOT(loseEmiter()));
                             theEnd = true;
                         }
                     }
@@ -167,7 +164,7 @@ void Mario::advance(int step)
             }
             else
             {
-                emit win();
+                QTimer::singleShot(5, this, SLOT(winEmiter()));
                 theEnd = true;
             }
         }
@@ -178,3 +175,12 @@ void Mario::advance(int step)
     }
 }
 
+void Mario::loseEmiter()
+{
+    emit lose();
+}
+
+void Mario::winEmiter()
+{
+    emit win();
+}
